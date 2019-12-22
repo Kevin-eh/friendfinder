@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+    />
+    <title>YOU WANT FRIENDS TAKE THIS QUIZ</title>
+  </head>
+  <body>
+    <h2>
+      It's the Friend Quiz
+    </h2>
+    <div class="container">
+      <hr />
+      <p>Name</p>
+      <input type="text" id="name" class="form-control" />
+      <p>Give us a link to your photo</p>
+      <input type="text" id="photo" class="form-control" />
+
+      <h3>Question 1</h3>
+      <h4>Between 1 and 5, my favorite number is.</h4>
+      <select class="chosen-select" id="q1">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <h3>Question 2</h3>
+      <h4>What number is the baddest in town?</h4>
+      <select class="chosen-select" id="q2">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 </option>
+      </select>
+      <h3>Question 3</h3>
+      <h4>What number do you trust the most?</h4>
+      <select class="chosen-select" id="q3">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 </option>
+      </select>
+      <h3>Question 4</h3>
+      <h4>This is the fourth question. Please select option 4.</h4>
+      <select class="chosen-select" id="q4">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 </option>
+      </select>
+      <h3>Question 5</h3>
+      <h4>How many friends do you already have?</h4>
+      <select class="chosen-select" id="q5">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 </option>
+      </select>
+      <h3>Question 6</h3>
+      <h4>By which question did you already get bored answering questions?</h4>
+      <select class="chosen-select" id="q6">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 </option>
+      </select>
+      <h3>Question 7</h3>
+      <h4>
+        There's been a crime! It was committed by one of these numbers. Quick!
+        Whodunnit!?
+      </h4>
+      <select class="chosen-select" id="q7">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 </option>
+      </select>
+   
+      <h3>Question 8</h3>
+      <h4>How many is just too too many?</h4>
+      <select class="chosen-select" id="q8">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 </option>
+      </select>
+   
+      <h3>Question 9</h3>
+      <h4>I've got some carrots here. How many would you like?</h4>
+      <select class="chosen-select" id="q9">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 </option>
+      </select>
+      <h3>Question 10</h3>
+      <h4>
+        On a scale of 1-5, 1 being the least honest and 5 being the mosts, how
+        honestly did you answer the questions today?
+      </h4>
+      <select class="chosen-select" id="q10">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <p></p>
+      <button type="submit" class="btn btn-primary submit" id="quiz-btn">Submit</button>
+              </form>
+      <hr />
+    </div>
+
+    <script type ="text/javascript">
+              $("#quiz-btn").on("click", function(event) {
+
+          event.preventDefault();
+      console.log("click")
+      var newFriend = {
+        name: $("#name").val().trim(),
+        photo: $("#photo").val().trim(),
+           answers: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+          ]
+      };
+
+          $.post("/api/friends", newFriend)
+        .then(function(data) {
+          console.log("friends.html", data);
+          alert("Finding Friend");
+        });
+       });
+    
+    
+    
+    
+    </script>
+  </body>
+</html>
